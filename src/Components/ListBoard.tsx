@@ -3,7 +3,10 @@ import styled from "styled-components";
 function ListBoard() {
   return (
     <Container>
-      <BoardTitle>PLANABLE</BoardTitle>
+      <Header>
+        <BoardTitle>PLANABLE</BoardTitle>
+        <Menu>menu</Menu>
+      </Header>
     </Container>
   );
 }
@@ -20,8 +23,23 @@ const Container = styled.div`
   height: 100%;
   background-color: ${(props) => props.theme.boardColor};
   border-radius: 24px;
+  padding: 20px;
 `;
 
-const BoardTitle = styled.h1`
-  text-align: center;
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const BoardTitle = styled.div`
+  font-size: 24px;
+  font-weight: 700;
+`;
+
+const Menu = styled.button`
+  appearance: none;
+  outline: none;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
 `;
