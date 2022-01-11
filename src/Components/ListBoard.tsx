@@ -4,7 +4,7 @@ function ListBoard() {
   return (
     <Container>
       <Header>
-        <BoardTitle>PLANABLE</BoardTitle>
+        <BoardTitle>Planable Life</BoardTitle>
         <Menu>menu</Menu>
       </Header>
     </Container>
@@ -23,7 +23,7 @@ const Container = styled.div`
   height: 100%;
   background-color: ${(props) => props.theme.boardColor};
   border-radius: 24px;
-  padding: 20px;
+  padding: 30px;
 `;
 
 const Header = styled.header`

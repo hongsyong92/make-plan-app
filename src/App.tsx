@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 import ListBoard from "./Components/ListBoard";
+import "./assets/fonts/pretendard.css";
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -51,7 +52,7 @@ table {
   box-sizing: border-box;
 }
 body {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Pretendard', sans-serif;
   background-color: ${(props) => props.theme.bgColor};
   color: ${(props) => props.theme.textColor};
   line-height: 1.2;
