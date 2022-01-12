@@ -6,6 +6,7 @@ import App from "./App";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { RecoilRoot } from "recoil";
 
+const rootElement = document.getElementById("root");
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
@@ -19,5 +20,5 @@ ReactDOM.render(
       </ThemeProvider>
     </RecoilRoot>
   </React.StrictMode>,
-  document.getElementById("root")
+  rootElement
 );

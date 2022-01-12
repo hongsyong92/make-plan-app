@@ -1,12 +1,22 @@
+import { useState } from "react";
 import styled from "styled-components";
+import MenuModal from "./MenuModal";
 
 function ListBoard() {
+  const [isOpen, setOpen] = useState(false);
+  const handleMenuClick = () => {
+    setOpen((prev) => !prev);
+  };
+  const closeModal = () => {
+    setOpen(false);
+  };
   return (
     <Container>
       <Header>
         <BoardTitle>Planable Life</BoardTitle>
-        <Menu>menu</Menu>
+        <Menu onClick={handleMenuClick}>📅</Menu>
       </Header>
+      {/* <MenuModal isOpen={isOpen} closeModal={closeModal} /> */}
     </Container>
   );
 }
@@ -24,6 +34,12 @@ const Container = styled.div`
   background-color: ${(props) => props.theme.boardColor};
   border-radius: 24px;
   padding: 30px;
+  .menu_modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: greenyellow;
+  }
 `;
 
 const Header = styled.header`
@@ -42,4 +58,10 @@ const Menu = styled.button`
   border: none;
   background-color: inherit;
   cursor: pointer;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

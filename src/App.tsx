@@ -1,6 +1,7 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import ListBoard from "./Components/ListBoard";
 import "./assets/fonts/pretendard.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -69,19 +70,14 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <AppContainer>
-        <ListBoard />
-      </AppContainer>
+      <Router>
+        <Routes>
+          {/* home 화면 */}
+          <Route path="/" element={<ListBoard />} />
+        </Routes>
+      </Router>
     </>
   );
 }
 
 export default App;
-
-const AppContainer = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
