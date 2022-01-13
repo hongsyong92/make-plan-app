@@ -16,14 +16,6 @@ const MenuModal = ({ isOpen, closeModal }: IModal) => {
 
 export default MenuModal;
 
-const AppContainer = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 const Container = styled.div`
   width: 300px;
   height: 300px;
