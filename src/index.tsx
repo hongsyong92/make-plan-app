@@ -13,7 +13,7 @@ ReactDOM.render(
       <ThemeProvider theme={theme}>
         <HelmetProvider>
           <Helmet>
-            <title>Planable Lists</title>
+            <title>PRESENT PROGRESSIVE</title>
           </Helmet>
           <App />
         </HelmetProvider>

@@ -1,7 +1,9 @@
 import { createGlobalStyle } from "styled-components";
-import ListBoard from "./Components/ListBoard";
-import "./assets/fonts/pretendard.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./assets/fonts/pretendard.css";
+import UserMenu from "./routes/UserMenu";
+import Home from "./routes/Home";
+import BottomNav from "./Components/BottomNav";
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -72,9 +74,12 @@ function App() {
       <GlobalStyle />
       <Router>
         <Routes>
+          {/* user menu 화면 */}
+          <Route path="/user-menu" element={<UserMenu />} />
           {/* home 화면 */}
-          <Route path="/" element={<ListBoard />} />
+          <Route path="/" element={<Home />} />
         </Routes>
+        <BottomNav />
       </Router>
     </>
   );
