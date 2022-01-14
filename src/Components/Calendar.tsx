@@ -54,23 +54,21 @@ function Calendar() {
               let isNone =
                 current.format("MM") === viewDate.format("MM") ? "" : "none";
               return (
-                <>
-                  <div className="box" key={`${week}_${i}`}>
-                    <div
-                      className={`text ${isSelected} ${isToday} ${isNone}`}
-                      onClick={() => {
-                        setSelectDate(current);
-                      }}
-                    >
-                      <span className={`day`}>{current.format("D")}</span>
-                      {isToday ? (
-                        <span className="isToday">오늘</span>
-                      ) : isSelected ? (
-                        <span className="isSelected"></span>
-                      ) : null}
-                    </div>
+                <div className="box" key={`${week}_${i}`}>
+                  <div
+                    className={`text ${isSelected} ${isToday} ${isNone}`}
+                    onClick={() => {
+                      setSelectDate(current);
+                    }}
+                  >
+                    <span className={`day`}>{current.format("D")}</span>
+                    {isToday ? (
+                      <span className="isToday">오늘</span>
+                    ) : isSelected ? (
+                      <span className="isSelected"></span>
+                    ) : null}
                   </div>
-                </>
+                </div>
               );
             })}
         </div>
@@ -151,16 +149,68 @@ const Container = styled.div`
     text-align: center;
     .row {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      width: 100%;
     }
     .row.week {
-      height: 20px;
-      border-bottom: 1px solid ${theme.borderColor};
+      height: 18px;
+      border-bottom: 1px solid #e8e8e8;
     }
     .box {
       width: 32px;
       height: 32px;
       margin: 6px 6px;
       font-size: 14px;
+    }
+    .text {
+      position: static;
+      width: 32px;
+      height: 32px;
+      color: ${theme.textColor};
+    }
+    .holiday,
+    .grayed {
+      color: #484848;
+      pointer-events: none;
+    }
+    .day {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+    }
+    .selected {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: pink;
+      font-weight: 700;
+      color: #fff;
+    }
+    .today {
+      border-radius: 50%;
+      font-weight: 500;
+      /* color: pink; */
+      background: pink;
+    }
+    .isSelected {
+      position: relative;
+      color: pink;
+      font-size: 10px;
+      font-weight: 400;
+    }
+    .isToday {
+      position: relative;
+      color: ${theme.textColor};
+      font-size: 10px;
+      font-weight: 400;
+    }
+    .none {
+      display: none;
     }
   }
 `;
