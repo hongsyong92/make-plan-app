@@ -1,29 +1,69 @@
 import styled from "styled-components";
 import { theme } from "../theme";
 import dayjs from "dayjs";
-import ListBoard from "../Components/ListBoard";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { ToDoMockData } from "../toDoMockData";
+import ToDoItem from "../Components/ToDoItem";
+import ToDoDetail from "../Components/ToDoDetail";
+import AddToDo from "../Components/AddToDo";
 
 function Home() {
   let now = dayjs();
   const percentage = 1;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const params = useParams();
+  const addToDoMatch = location.pathname.includes("/add-todos");
+  const onToDoClick = (toDoId: number) => {
+    navigate(`/todos/${toDoId}`);
+  };
+  const clickedToDo =
+    params.id && ToDoMockData.find((item) => item.id === Number(params.id));
+
   return (
     <Container>
       <TextHeader>
         <p>TODAY</p>
-        <span>{now.format("YYYY.MM.DD")} 📅</span>
+        <Link to="/select-date">
+          <span>{now.format("YYYY.MM.DD")} &nbsp;&nbsp;📅</span>
+        </Link>
       </TextHeader>
       <ProgressBox>
         <CircularProgressbar value={percentage} text={`${percentage}%`} />
       </ProgressBox>
-      <ListBoard />
+      <ListBoard>
+        <BoardTitle>TO DO LIST</BoardTitle>
+        <List>
+          {ToDoMockData.map((item) => (
+            <ToDoItem
+              key={item.id}
+              item={item}
+              onClick={() => onToDoClick(item.id)}
+            />
+          ))}
+        </List>
+      </ListBoard>
+      {clickedToDo ? (
+        <>
+          <Overlay onClick={() => navigate("/")} />
+          <ToDoDetail item={clickedToDo} />
+        </>
+      ) : null}
+      {addToDoMatch ? (
+        <>
+          <Overlay onClick={() => navigate("/")} />
+          <AddToDo />
+        </>
+      ) : null}
     </Container>
   );
 }
 export default Home;
 
 const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,10 +71,12 @@ const Container = styled.div`
   height: calc(100% - 55px);
   background-color: ${theme.bgColor};
   padding-top: 30px;
+  overflow-x: hidden;
   overflow-y: auto;
 `;
 
 const TextHeader = styled.div`
+  position: relative;
   width: calc(100% - 40px);
   display: flex;
   justify-content: space-between;
@@ -65,4 +107,38 @@ const ProgressBox = styled.div`
   .CircularProgressbar-background {
     fill: green;
   }
+`;
+
+const ListBoard = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  background-color: ${(props) => props.theme.bgColor};
+`;
+
+const List = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 30px;
+`;
+
+const BoardTitle = styled.div`
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: 700;
+`;
+
+const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 55px);
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  z-index: 1;
 `;

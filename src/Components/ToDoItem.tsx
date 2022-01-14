@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { theme } from "../theme";
 import { AiOutlineMore } from "react-icons/ai";
+import React from "react";
 
 interface IToDoItem {
   item: any;
@@ -23,7 +24,7 @@ function ToDoItem({ item, onClick }: IToDoItem) {
     </Container>
   );
 }
-export default ToDoItem;
+export default React.memo(ToDoItem);
 
 const Container = styled.div`
   position: relative;

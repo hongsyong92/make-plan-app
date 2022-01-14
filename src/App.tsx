@@ -4,6 +4,7 @@ import UserMenu from "./routes/UserMenu";
 import Home from "./routes/Home";
 import BottomNav from "./Components/BottomNav";
 import styled from "styled-components";
+import CalendarScreen from "./routes/CalendarScreen";
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
           <Route path="/user-menu" element={<UserMenu />} />
           {/* home 화면 */}
           <Route path="/todos/:id" element={<Home />} />
+          <Route path="/add-todos" element={<Home />} />
+          <Route path="/select-date" element={<CalendarScreen />} />
           <Route path="/" element={<Home />} />
         </Routes>
         <BottomNav />

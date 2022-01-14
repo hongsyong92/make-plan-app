@@ -17,7 +17,9 @@ function BottomNav() {
       </div>
       <div className="menu_item">
         <button>
-          <RiAddCircleLine size="22" />
+          <Link to="/add-todos">
+            <RiAddCircleLine size="22" />
+          </Link>
         </button>
       </div>
       <div className="menu_item">
