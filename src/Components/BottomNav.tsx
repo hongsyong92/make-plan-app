@@ -24,7 +24,7 @@ function BottomNav() {
       </div>
       <div className="menu_item">
         <button>
-          <Link to="user-menu">
+          <Link to="/user-menu">
             <BiUser size="22" />
           </Link>
         </button>
