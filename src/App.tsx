@@ -9,7 +9,7 @@ import CalendarScreen from "./routes/CalendarScreen";
 function App() {
   return (
     <Container>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Routes>
           {/* user menu 화면 */}
           <Route path="/user-menu" element={<UserMenu />} />
