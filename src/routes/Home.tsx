@@ -8,6 +8,8 @@ import { ToDoMockData } from "../toDoMockData";
 import ToDoItem from "../Components/ToDoItem";
 import ToDoDetail from "../Components/ToDoDetail";
 import AddToDo from "../Components/AddToDo";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { toDoState } from "../atoms";
 
 function Home() {
   let now = dayjs();
@@ -21,6 +23,8 @@ function Home() {
   };
   const clickedToDo =
     params.id && ToDoMockData.find((item) => item.id === Number(params.id));
+
+  const toDos = useRecoilValue(toDoState);
 
   return (
     <Container>
@@ -36,7 +40,7 @@ function Home() {
       <ListBoard>
         <BoardTitle>TO DO LIST</BoardTitle>
         <List>
-          {ToDoMockData.map((item) => (
+          {toDos.map((item) => (
             <ToDoItem
               key={item.id}
               item={item}

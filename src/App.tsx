@@ -1,26 +1,53 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./assets/fonts/pretendard.css";
 import UserMenu from "./routes/UserMenu";
 import Home from "./routes/Home";
 import BottomNav from "./Components/BottomNav";
 import styled from "styled-components";
 import CalendarScreen from "./routes/CalendarScreen";
+import { useState } from "react";
+import Login from "./routes/Login";
 
 function App() {
+  const [isLogin, setLogin] = useState(false);
+  const handleLogin = () => {
+    setLogin(true);
+  };
   return (
     <Container>
-      <Router basename={process.env.PUBLIC_URL}>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
-          {/* user menu 화면 */}
-          <Route path="/user-menu" element={<UserMenu />} />
-          {/* home 화면 */}
+          <Route
+            index
+            element={
+              isLogin ? (
+                <Home />
+              ) : (
+                <Login isLogin={isLogin} handleLogin={handleLogin} />
+              )
+            }
+          />
+          <Route
+            path="/present-progress-app"
+            element={
+              isLogin ? (
+                <Home />
+              ) : (
+                <Login isLogin={isLogin} handleLogin={handleLogin} />
+              )
+            }
+          />
           <Route path="/todos/:id" element={<Home />} />
           <Route path="/add-todos" element={<Home />} />
           <Route path="/select-date" element={<CalendarScreen />} />
-          <Route path="/" element={<Home />} />
+          {/* user menu 화면 */}
+          <Route
+            path="/user-menu"
+            element={isLogin ? <Home /> : <UserMenu />}
+          />
         </Routes>
         <BottomNav />
-      </Router>
+      </BrowserRouter>
     </Container>
   );
 }
