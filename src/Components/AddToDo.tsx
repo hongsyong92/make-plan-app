@@ -2,48 +2,50 @@ import styled from "styled-components";
 import { theme } from "../theme";
 import { RiCloseFill } from "react-icons/ri";
 import { BiPencil } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toDoState } from "../atoms";
 import { useRecoilState } from "recoil";
 
+interface IAddToDoModal {
+  addOpen: boolean;
+  onClose: () => void;
+}
 interface IForm {
   toDo: string;
 }
 
-function AddToDo() {
-  const navigate = useNavigate();
+function AddToDo({ addOpen, onClose }: IAddToDoModal) {
+  // const navigate = useNavigate();
   const [toDos, setToDos] = useRecoilState(toDoState);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IForm>();
-  const handleValid = ({ toDo }: any) => {
+  const { register, handleSubmit, setValue } = useForm<IForm>();
+
+  const handleValid = ({ toDo }: IForm) => {
     setToDos((oldToDos) => [
-      { text: toDo.text, category: "TO_DO", id: Date.now() },
+      { text: toDo, category: "TO_DO", id: Date.now() },
       ...oldToDos,
     ]);
+    setValue("toDo", "");
+    onClose();
   };
 
   return (
-    <Container>
+    <Container addOpen={addOpen}>
       <DetailHeader>
-        <button className="close_btn" onClick={() => navigate("/")}>
+        <button className="close_btn" onClick={() => onClose()}>
           <RiCloseFill size="24" />
         </button>
       </DetailHeader>
+
       <form onSubmit={handleSubmit(handleValid)}>
         <input
           {...register("toDo", {
             required: "필수 입력 항목입니다.",
             minLength: 2,
           })}
-          type="text"
           placeholder="할 일을 입력하세요"
         />
-        <p>{errors?.toDo?.message}</p>
-        <button className="add_todo_btn" onClick={() => navigate("/")}>
+        <button className="add_todo_btn">
           <BiPencil size="16" />
           <span>등록하기</span>
         </button>
@@ -53,10 +55,12 @@ function AddToDo() {
 }
 export default AddToDo;
 
-const Container = styled.div`
+const Container = styled.div<{ addOpen: boolean }>`
+  display: ${(props) => (props.addOpen ? "flex" : "none")};
+  flex-direction: column;
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: 55px;
   width: 100%;
   height: 70%;
   padding: 30px 20px;

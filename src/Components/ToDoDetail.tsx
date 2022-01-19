@@ -9,6 +9,7 @@ interface IToDoDetail {
 
 function ToDoDetail({ item }: IToDoDetail) {
   const navigate = useNavigate();
+
   return (
     <Container>
       <DetailHeader>
@@ -17,7 +18,7 @@ function ToDoDetail({ item }: IToDoDetail) {
         </button>
       </DetailHeader>
       <div className="created">{item.createdAt}</div>
-      <div className="todo_content">{item.content}</div>
+      <div className="todo_content">{item.text}</div>
     </Container>
   );
 }

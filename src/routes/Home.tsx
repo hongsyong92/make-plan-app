@@ -3,21 +3,20 @@ import { theme } from "../theme";
 import dayjs from "dayjs";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ToDoMockData } from "../toDoMockData";
 import ToDoItem from "../Components/ToDoItem";
 import ToDoDetail from "../Components/ToDoDetail";
-import AddToDo from "../Components/AddToDo";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import { toDoState } from "../atoms";
 
 function Home() {
   let now = dayjs();
   const percentage = 1;
   const navigate = useNavigate();
-  const location = useLocation();
   const params = useParams();
-  const addToDoMatch = location.pathname.includes("/add-todos");
+  // const location = useLocation();
+  // const addToDoMatch = location.pathname.includes("/add-todos");
   const onToDoClick = (toDoId: number) => {
     navigate(`/todos/${toDoId}`);
   };
@@ -34,19 +33,25 @@ function Home() {
           <span>{now.format("YYYY.MM.DD")} &nbsp;&nbsp;📅</span>
         </Link>
       </TextHeader>
-      <ProgressBox>
+      {/* <ProgressBox>
         <CircularProgressbar value={percentage} text={`${percentage}%`} />
-      </ProgressBox>
+      </ProgressBox> */}
       <ListBoard>
         <BoardTitle>TO DO LIST</BoardTitle>
         <List>
-          {toDos.map((item) => (
-            <ToDoItem
-              key={item.id}
-              item={item}
-              onClick={() => onToDoClick(item.id)}
-            />
-          ))}
+          {toDos?.length > 0 ? (
+            <>
+              {toDos?.map((item) => (
+                <ToDoItem
+                  key={item.id}
+                  item={item}
+                  onClick={() => onToDoClick(item.id)}
+                />
+              ))}
+            </>
+          ) : (
+            <p>아직 등록된 할 일이 없습니다.</p>
+          )}
         </List>
       </ListBoard>
       {clickedToDo ? (
@@ -55,12 +60,12 @@ function Home() {
           <ToDoDetail item={clickedToDo} />
         </>
       ) : null}
-      {addToDoMatch ? (
+      {/* {addToDoMatch ? (
         <>
           <Overlay onClick={() => navigate("/")} />
           <AddToDo />
         </>
-      ) : null}
+      ) : null} */}
     </Container>
   );
 }

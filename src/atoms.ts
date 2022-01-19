@@ -13,3 +13,8 @@ export const toDoState = atom<IToDo[]>({
   key: "toDo",
   default: [],
 });
+
+export const loginState = atom<boolean>({
+  key: "isLogin",
+  default: false,
+});

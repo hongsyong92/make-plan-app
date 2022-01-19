@@ -5,11 +5,12 @@ import Home from "./routes/Home";
 import BottomNav from "./Components/BottomNav";
 import styled from "styled-components";
 import CalendarScreen from "./routes/CalendarScreen";
-import { useState } from "react";
 import Login from "./routes/Login";
+import { useRecoilState } from "recoil";
+import { loginState } from "./atoms";
 
 function App() {
-  const [isLogin, setLogin] = useState(false);
+  const [isLogin, setLogin] = useRecoilState(loginState);
   const handleLogin = () => {
     setLogin(true);
   };
@@ -38,7 +39,7 @@ function App() {
             }
           />
           <Route path="/todos/:id" element={<Home />} />
-          <Route path="/add-todos" element={<Home />} />
+          {/* <Route path="/add-todos" element={<Home />} /> */}
           <Route path="/select-date" element={<CalendarScreen />} />
           {/* user menu 화면 */}
           <Route

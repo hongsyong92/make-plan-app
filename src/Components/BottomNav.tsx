@@ -4,32 +4,49 @@ import { RiAddCircleLine } from "react-icons/ri";
 import { BiUser } from "react-icons/bi";
 import { theme } from "../theme";
 import { Link } from "react-router-dom";
+import AddToDo from "./AddToDo";
+import { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { loginState } from "../atoms";
 
 function BottomNav() {
+  const [addOpen, setAddOpen] = useState(false);
+  const isLogin = useRecoilValue(loginState);
+  const handleAddClick = () => {
+    if (isLogin) {
+      setAddOpen(true);
+    } else {
+      console.log("not loggged in");
+    }
+  };
+  const onClose = () => {
+    setAddOpen(false);
+  };
   return (
-    <Container>
-      <div className="menu_item">
-        <button>
-          <Link to="/">
-            <BsListCheck size="22" />
-          </Link>
-        </button>
-      </div>
-      <div className="menu_item">
-        <button>
-          <Link to="/add-todos">
+    <>
+      <Container>
+        <div className="menu_item">
+          <button>
+            <Link to="/">
+              <BsListCheck size="22" />
+            </Link>
+          </button>
+        </div>
+        <div className="menu_item">
+          <button onClick={handleAddClick}>
             <RiAddCircleLine size="22" />
-          </Link>
-        </button>
-      </div>
-      <div className="menu_item">
-        <button>
-          <Link to="/user-menu">
-            <BiUser size="22" />
-          </Link>
-        </button>
-      </div>
-    </Container>
+          </button>
+        </div>
+        <div className="menu_item">
+          <button>
+            <Link to="/user-menu">
+              <BiUser size="22" />
+            </Link>
+          </button>
+        </div>
+      </Container>
+      <AddToDo addOpen={addOpen} onClose={onClose} />
+    </>
   );
 }
 

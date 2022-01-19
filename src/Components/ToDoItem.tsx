@@ -9,11 +9,12 @@ interface IToDoItem {
 }
 
 function ToDoItem({ item, onClick }: IToDoItem) {
+  console.log(item);
   return (
     <Container onClick={onClick}>
       <StatusLine />
       <ToDoContents>
-        <p>{item.content}</p>
+        <p>{item.text}</p>
       </ToDoContents>
       <MoreBtn
         className="more_btn"
