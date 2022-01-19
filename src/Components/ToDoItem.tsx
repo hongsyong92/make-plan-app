@@ -2,19 +2,14 @@ import styled from "styled-components";
 import { theme } from "../theme";
 import { AiOutlineMore } from "react-icons/ai";
 import React from "react";
+import { IToDo } from "../atoms";
 
-interface IToDoItem {
-  item: any;
-  onClick: () => void;
-}
-
-function ToDoItem({ item, onClick }: IToDoItem) {
-  console.log(item);
+function ToDoItem({ text, category, onClick }: IToDo) {
   return (
     <Container onClick={onClick}>
-      <StatusLine />
+      <StatusLine category={category} />
       <ToDoContents>
-        <p>{item.text}</p>
+        <p>{text}</p>
       </ToDoContents>
       <MoreBtn
         className="more_btn"
@@ -49,10 +44,11 @@ const Container = styled.div`
   }
 `;
 
-const StatusLine = styled.div`
-  width: 2px;
+const StatusLine = styled.div<{ category: string }>`
+  width: 3px;
   height: calc(100% - 15px);
-  background-color: gold;
+  background-color: ${(props) =>
+    props.category === "TO_DO" ? "blue" : "DOING" ? "gold" : "green"};
 `;
 
 const ToDoContents = styled.div`

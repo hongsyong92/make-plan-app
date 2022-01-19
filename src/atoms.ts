@@ -1,12 +1,13 @@
 import { atom } from "recoil";
 
-interface IForm {
-  toDo: string;
-}
-interface IToDo {
+// interface IForm {
+//   toDo: string;
+// }
+export interface IToDo {
   text: string;
-  id: number;
+  id?: number;
   category: "TO_DO" | "DOING" | "DONE";
+  onClick?: () => void;
 }
 
 export const toDoState = atom<IToDo[]>({

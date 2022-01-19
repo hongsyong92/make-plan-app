@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { theme } from "../theme";
 import dayjs from "dayjs";
-import { CircularProgressbar } from "react-circular-progressbar";
+// import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ToDoMockData } from "../toDoMockData";
@@ -12,12 +12,12 @@ import { toDoState } from "../atoms";
 
 function Home() {
   let now = dayjs();
-  const percentage = 1;
+  // const percentage = 1;
   const navigate = useNavigate();
   const params = useParams();
   // const location = useLocation();
   // const addToDoMatch = location.pathname.includes("/add-todos");
-  const onToDoClick = (toDoId: number) => {
+  const onToDoClick = (toDoId: number | undefined) => {
     navigate(`/todos/${toDoId}`);
   };
   const clickedToDo =
@@ -44,7 +44,9 @@ function Home() {
               {toDos?.map((item) => (
                 <ToDoItem
                   key={item.id}
-                  item={item}
+                  id={item.id}
+                  text={item.text}
+                  category={item.category}
                   onClick={() => onToDoClick(item.id)}
                 />
               ))}
@@ -100,23 +102,23 @@ const TextHeader = styled.div`
   }
 `;
 
-const ProgressBox = styled.div`
-  position: relative;
-  width: 150px;
-  margin-bottom: 20px;
-  .CircularProgressbar-path {
-    stroke: gold;
-  }
-  .CircularProgressbar-trail {
-    stroke: ${theme.modalColor};
-  }
-  .CircularProgressbar-text {
-    fill: gold;
-  }
-  .CircularProgressbar-background {
-    fill: green;
-  }
-`;
+// const ProgressBox = styled.div`
+//   position: relative;
+//   width: 150px;
+//   margin-bottom: 20px;
+//   .CircularProgressbar-path {
+//     stroke: gold;
+//   }
+//   .CircularProgressbar-trail {
+//     stroke: ${theme.modalColor};
+//   }
+//   .CircularProgressbar-text {
+//     fill: gold;
+//   }
+//   .CircularProgressbar-background {
+//     fill: green;
+//   }
+// `;
 
 const ListBoard = styled.div`
   position: relative;

@@ -39,12 +39,17 @@ function App() {
             }
           />
           <Route path="/todos/:id" element={<Home />} />
-          {/* <Route path="/add-todos" element={<Home />} /> */}
           <Route path="/select-date" element={<CalendarScreen />} />
           {/* user menu 화면 */}
           <Route
             path="/user-menu"
-            element={isLogin ? <Home /> : <UserMenu />}
+            element={
+              isLogin ? (
+                <UserMenu />
+              ) : (
+                <Login isLogin={isLogin} handleLogin={handleLogin} />
+              )
+            }
           />
         </Routes>
         <BottomNav />

@@ -5,7 +5,7 @@ import { BiPencil } from "react-icons/bi";
 // import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toDoState } from "../atoms";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 
 interface IAddToDoModal {
   addOpen: boolean;
@@ -17,7 +17,7 @@ interface IForm {
 
 function AddToDo({ addOpen, onClose }: IAddToDoModal) {
   // const navigate = useNavigate();
-  const [toDos, setToDos] = useRecoilState(toDoState);
+  const setToDos = useSetRecoilState(toDoState);
   const { register, handleSubmit, setValue } = useForm<IForm>();
 
   const handleValid = ({ toDo }: IForm) => {
