@@ -1,11 +1,21 @@
+import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
+import { loginState } from "../atoms";
 import { theme } from "../theme";
 
 function UserMenu() {
+  const setLogin = useSetRecoilState(loginState);
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    navigate("/login");
+    setLogin(false);
+  };
   return (
     <Container>
       <TextHeader>
         <p>user 님의 메뉴</p>
+        <button onClick={handleLogout}>로그아웃</button>
       </TextHeader>
     </Container>
   );

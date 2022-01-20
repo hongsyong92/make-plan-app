@@ -62,12 +62,6 @@ function Home() {
           <ToDoDetail item={clickedToDo} />
         </>
       ) : null}
-      {/* {addToDoMatch ? (
-        <>
-          <Overlay onClick={() => navigate("/")} />
-          <AddToDo />
-        </>
-      ) : null} */}
     </Container>
   );
 }

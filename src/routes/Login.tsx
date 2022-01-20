@@ -1,12 +1,23 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import { loginState } from "../atoms";
 import { theme } from "../theme";
 
-interface ILogin {
-  isLogin: boolean;
-  handleLogin: () => void;
-}
+function Login() {
+  const navigate = useNavigate();
+  const [isLogin, setLogin] = useRecoilState(loginState);
 
-function Login({ isLogin, handleLogin }: ILogin) {
+  const handleLogin = () => {
+    setLogin(true);
+  };
+
+  useEffect(() => {
+    if (isLogin) {
+      navigate("/");
+    }
+  }, [isLogin, navigate]);
   return (
     <Container>
       <TextHeader>

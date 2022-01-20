@@ -5,6 +5,7 @@ import { theme } from "./theme";
 import App from "./App";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { RecoilRoot } from "recoil";
+import { BrowserRouter } from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -90,7 +91,9 @@ ReactDOM.render(
             <title>PRESENT PROGRESSIVE</title>
           </Helmet>
           <GlobalStyle />
-          <App />
+          <BrowserRouter basename={process.env.PUBLIC_URL}>
+            <App />
+          </BrowserRouter>
         </HelmetProvider>
       </ThemeProvider>
     </RecoilRoot>
