@@ -9,6 +9,7 @@ import ToDoItem from "../Components/ToDoItem";
 import ToDoDetail from "../Components/ToDoDetail";
 import { useRecoilValue } from "recoil";
 import { toDoState } from "../atoms";
+import { AnimatePresence } from "framer-motion";
 
 function Home() {
   let now = dayjs();
@@ -26,43 +27,47 @@ function Home() {
   const toDos = useRecoilValue(toDoState);
 
   return (
-    <Container>
-      <TextHeader>
-        <p>TODAY</p>
-        <Link to="/select-date">
-          <span>{now.format("YYYY.MM.DD")} &nbsp;&nbsp;📅</span>
-        </Link>
-      </TextHeader>
-      {/* <ProgressBox>
+    <AnimatePresence>
+      <Container>
+        <TextHeader>
+          <p>TODAY</p>
+          <Link to="/select-date">
+            <span>{now.format("YYYY.MM.DD")} &nbsp;&nbsp;📅</span>
+          </Link>
+        </TextHeader>
+        {/* <ProgressBox>
         <CircularProgressbar value={percentage} text={`${percentage}%`} />
       </ProgressBox> */}
-      <ListBoard>
-        <BoardTitle>TO DO LIST</BoardTitle>
-        <List>
-          {toDos?.length > 0 ? (
-            <>
-              {toDos?.map((item) => (
-                <ToDoItem
-                  key={item.id}
-                  id={item.id}
-                  text={item.text}
-                  category={item.category}
-                  onClick={() => onToDoClick(item.id)}
-                />
-              ))}
-            </>
-          ) : (
-            <p>아직 등록된 할 일이 없습니다.</p>
-          )}
-        </List>
-      </ListBoard>
-      {clickedToDo ? (
-        <>
-          <Overlay onClick={() => navigate("/")} />
-          <ToDoDetail item={clickedToDo} />
-        </>
-      ) : null}
-    </Container>
+
+        <ListBoard>
+          <BoardTitle>TO DO LIST</BoardTitle>
+
+          <List>
+            {toDos?.length > 0 ? (
+              <>
+                {toDos?.map((item) => (
+                  <ToDoItem
+                    key={item.id}
+                    id={item.id}
+                    text={item.text}
+                    category={item.category}
+                    onClick={() => onToDoClick(item.id)}
+                  />
+                ))}
+              </>
+            ) : (
+              <p>아직 등록된 할 일이 없습니다.</p>
+            )}
+          </List>
+        </ListBoard>
+        {clickedToDo ? (
+          <>
+            <Overlay onClick={() => navigate("/")} />
+            <ToDoDetail item={clickedToDo} />
+          </>
+        ) : null}
+      </Container>
+    </AnimatePresence>
   );
 }
 export default Home;
