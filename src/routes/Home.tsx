@@ -9,7 +9,7 @@ import ToDoItem from "../Components/ToDoItem";
 import ToDoDetail from "../Components/ToDoDetail";
 import { useRecoilValue } from "recoil";
 import { toDoState } from "../atoms";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 function Home() {
   let now = dayjs();
@@ -26,9 +26,26 @@ function Home() {
 
   const toDos = useRecoilValue(toDoState);
 
+  const pageVariants = {
+    initial: {
+      opacity: 0,
+    },
+    in: {
+      opacity: 1,
+    },
+    out: {
+      opacity: 0,
+    },
+  };
+
   return (
     <AnimatePresence>
-      <Container>
+      <Container
+        initial="initial"
+        animate="in"
+        exit="out"
+        variants={pageVariants}
+      >
         <TextHeader>
           <p>TODAY</p>
           <Link to="/select-date">
@@ -72,7 +89,7 @@ function Home() {
 }
 export default Home;
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   position: relative;
   display: flex;
   flex-direction: column;
