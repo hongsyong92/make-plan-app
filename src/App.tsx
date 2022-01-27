@@ -4,6 +4,7 @@ import Router from "./Components/Router";
 import Login from "./routes/Login";
 import { useRecoilValue } from "recoil";
 import { loginState } from "./atoms";
+import { theme } from "./theme";
 
 function App() {
   const isLogin = useRecoilValue(loginState);
@@ -22,4 +23,5 @@ const Container = styled.div`
   margin: 0 auto;
   border-radius: 20px;
   overflow: hidden;
+  background-color: ${theme.bgColor};
 `;

@@ -3,6 +3,7 @@ import { theme } from "../theme";
 import { AiOutlineMore } from "react-icons/ai";
 import React from "react";
 import { IToDo } from "../atoms";
+import { motion } from "framer-motion";
 
 function ToDoItem({ text, category, onClick }: IToDo) {
   return (
@@ -22,7 +23,7 @@ function ToDoItem({ text, category, onClick }: IToDo) {
 }
 export default React.memo(ToDoItem);
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   position: relative;
   display: flex;
   justify-content: space-between;

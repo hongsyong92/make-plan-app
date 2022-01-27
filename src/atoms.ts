@@ -8,6 +8,7 @@ export interface IToDo {
   id?: number;
   category: "TO_DO" | "DOING" | "DONE";
   onClick?: () => void;
+  layoutId?: number;
 }
 
 export const toDoState = atom<IToDo[]>({
@@ -17,5 +18,5 @@ export const toDoState = atom<IToDo[]>({
 
 export const loginState = atom<boolean>({
   key: "isLogin",
-  default: false,
+  default: true,
 });

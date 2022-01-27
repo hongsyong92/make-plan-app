@@ -1,40 +1,47 @@
 import styled from "styled-components";
 import { theme } from "../theme";
 import dayjs from "dayjs";
-// import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { ToDoMockData } from "../toDoMockData";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+// import { ToDoMockData } from "../toDoMockData";
 import ToDoItem from "../Components/ToDoItem";
 import ToDoDetail from "../Components/ToDoDetail";
 import { useRecoilValue } from "recoil";
 import { toDoState } from "../atoms";
 import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 
 function Home() {
   let now = dayjs();
-  // const percentage = 1;
+
   const navigate = useNavigate();
   const params = useParams();
-  // const location = useLocation();
-  // const addToDoMatch = location.pathname.includes("/add-todos");
+  const location = useLocation();
+
+  const [selectedId, setSelectedId] = useState<number | undefined>();
+  const toDoDetailMatch = location.pathname.includes(`/todos/`);
   const onToDoClick = (toDoId: number | undefined) => {
+    console.log(clickedToDo);
     navigate(`/todos/${toDoId}`);
   };
-  const clickedToDo =
-    params.id && ToDoMockData.find((item) => item.id === Number(params.id));
 
   const toDos = useRecoilValue(toDoState);
 
+  const clickedToDo =
+    params.id && toDos.find((item) => item.id === Number(params.id));
+
   const pageVariants = {
     initial: {
-      opacity: 0,
+      x: -500,
+      transition: { type: "tween" },
     },
-    in: {
-      opacity: 1,
+    visible: {
+      x: 0,
+      transition: { type: "tween" },
     },
-    out: {
-      opacity: 0,
+    exit: {
+      x: 500,
+      transition: { type: "tween" },
     },
   };
 
@@ -42,8 +49,8 @@ function Home() {
     <AnimatePresence>
       <Container
         initial="initial"
-        animate="in"
-        exit="out"
+        animate="visible"
+        exit="exit"
         variants={pageVariants}
       >
         <TextHeader>
@@ -52,9 +59,6 @@ function Home() {
             <span>{now.format("YYYY.MM.DD")} &nbsp;&nbsp;📅</span>
           </Link>
         </TextHeader>
-        {/* <ProgressBox>
-        <CircularProgressbar value={percentage} text={`${percentage}%`} />
-      </ProgressBox> */}
 
         <ListBoard>
           <BoardTitle>TO DO LIST</BoardTitle>
@@ -64,11 +68,15 @@ function Home() {
               <>
                 {toDos?.map((item) => (
                   <ToDoItem
+                    layoutId={item.id}
                     key={item.id}
                     id={item.id}
                     text={item.text}
                     category={item.category}
-                    onClick={() => onToDoClick(item.id)}
+                    onClick={() => {
+                      onToDoClick(item.id);
+                      setSelectedId(item.id);
+                    }}
                   />
                 ))}
               </>
@@ -77,7 +85,7 @@ function Home() {
             )}
           </List>
         </ListBoard>
-        {clickedToDo ? (
+        {clickedToDo && selectedId && toDoDetailMatch ? (
           <>
             <Overlay onClick={() => navigate("/")} />
             <ToDoDetail item={clickedToDo} />
@@ -117,24 +125,6 @@ const TextHeader = styled.div`
     margin-right: 10px;
   }
 `;
-
-// const ProgressBox = styled.div`
-//   position: relative;
-//   width: 150px;
-//   margin-bottom: 20px;
-//   .CircularProgressbar-path {
-//     stroke: gold;
-//   }
-//   .CircularProgressbar-trail {
-//     stroke: ${theme.modalColor};
-//   }
-//   .CircularProgressbar-text {
-//     fill: gold;
-//   }
-//   .CircularProgressbar-background {
-//     fill: green;
-//   }
-// `;
 
 const ListBoard = styled.div`
   position: relative;

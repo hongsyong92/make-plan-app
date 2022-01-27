@@ -6,6 +6,7 @@ import { BiPencil } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import { toDoState } from "../atoms";
 import { useSetRecoilState } from "recoil";
+import { motion } from "framer-motion";
 
 interface IAddToDoModal {
   addOpen: boolean;
@@ -14,6 +15,24 @@ interface IAddToDoModal {
 interface IForm {
   toDo: string;
 }
+
+const pageVariants = {
+  initial: {
+    opacity: 0,
+    y: 1000,
+    transition: { type: "tween" },
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "tween" },
+  },
+  exit: {
+    opacity: 0,
+    y: 1000,
+    transition: { type: "tween" },
+  },
+};
 
 function AddToDo({ addOpen, onClose }: IAddToDoModal) {
   // const navigate = useNavigate();
@@ -30,7 +49,13 @@ function AddToDo({ addOpen, onClose }: IAddToDoModal) {
   };
 
   return (
-    <Container addOpen={addOpen}>
+    <Container
+      addOpen={addOpen}
+      variants={pageVariants}
+      initial="initial"
+      animate="visible"
+      exit="exit"
+    >
       <DetailHeader>
         <button className="close_btn" onClick={() => onClose()}>
           <RiCloseFill size="24" />
@@ -55,8 +80,8 @@ function AddToDo({ addOpen, onClose }: IAddToDoModal) {
 }
 export default AddToDo;
 
-const Container = styled.div<{ addOpen: boolean }>`
-  display: ${(props) => (props.addOpen ? "flex" : "none")};
+const Container = styled(motion.div)<{ addOpen: boolean }>`
+  display: flex;
   flex-direction: column;
   position: absolute;
   left: 0;
@@ -65,6 +90,7 @@ const Container = styled.div<{ addOpen: boolean }>`
   height: 70%;
   padding: 30px 20px;
   overflow-x: hidden;
+  border-radius: 20px 20px 0 0;
   background-color: ${theme.modalColor};
   z-index: 2;
   form {

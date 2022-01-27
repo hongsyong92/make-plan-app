@@ -1,8 +1,24 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { loginState } from "../atoms";
 import { theme } from "../theme";
+
+const pageVariants = {
+  initial: {
+    x: 500,
+    transition: { type: "tween" },
+  },
+  visible: {
+    x: 0,
+    transition: { type: "tween" },
+  },
+  exit: {
+    x: -500,
+    transition: { type: "tween" },
+  },
+};
 
 function UserMenu() {
   const setLogin = useSetRecoilState(loginState);
@@ -12,17 +28,24 @@ function UserMenu() {
     setLogin(false);
   };
   return (
-    <Container>
-      <TextHeader>
-        <p>user 님의 메뉴</p>
-        <button onClick={handleLogout}>로그아웃</button>
-      </TextHeader>
-    </Container>
+    <AnimatePresence>
+      <Container
+        variants={pageVariants}
+        initial="initial"
+        animate="visible"
+        exit="exit"
+      >
+        <TextHeader>
+          <p>user 님의 메뉴</p>
+          <button onClick={handleLogout}>로그아웃</button>
+        </TextHeader>
+      </Container>
+    </AnimatePresence>
   );
 }
 export default UserMenu;
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;

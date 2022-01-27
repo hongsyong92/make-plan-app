@@ -8,6 +8,7 @@ import AddToDo from "./AddToDo";
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../atoms";
+import { AnimatePresence } from "framer-motion";
 
 function BottomNav() {
   const [addOpen, setAddOpen] = useState(false);
@@ -45,7 +46,14 @@ function BottomNav() {
           </button>
         </div>
       </Container>
-      <AddToDo addOpen={addOpen} onClose={onClose} />
+      <AnimatePresence>
+        {addOpen ? (
+          <>
+            <Overlay onClick={onClose} />
+            <AddToDo addOpen={addOpen} onClose={onClose} />
+          </>
+        ) : null}
+      </AnimatePresence>
     </>
   );
 }
@@ -80,4 +88,15 @@ const Container = styled.div`
       }
     }
   }
+`;
+
+const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 55px);
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  z-index: 1;
 `;
