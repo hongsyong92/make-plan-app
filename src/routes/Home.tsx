@@ -3,7 +3,6 @@ import { theme } from "../theme";
 import dayjs from "dayjs";
 import "react-circular-progressbar/dist/styles.css";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-// import { ToDoMockData } from "../toDoMockData";
 import ToDoItem from "../Components/ToDoItem";
 import ToDoDetail from "../Components/ToDoDetail";
 import { useRecoilValue } from "recoil";
@@ -21,7 +20,6 @@ function Home() {
   const [selectedId, setSelectedId] = useState<number | undefined>();
   const toDoDetailMatch = location.pathname.includes(`/todos/`);
   const onToDoClick = (toDoId: number | undefined) => {
-    console.log(clickedToDo);
     navigate(`/todos/${toDoId}`);
   };
 
