@@ -91,7 +91,7 @@ ReactDOM.render(
             <title>PRESENT PROGRESSIVE</title>
           </Helmet>
           <GlobalStyle />
-          <BrowserRouter basename={process.env.PUBLIC_URL}>
+          <BrowserRouter basename="/present-progress-app">
             <App />
           </BrowserRouter>
         </HelmetProvider>

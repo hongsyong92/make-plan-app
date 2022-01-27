@@ -1,3 +1,5 @@
+const webpack = require("webpack");
+
 module.exports = {
   webpack: {
     configure: {
@@ -11,12 +13,12 @@ module.exports = {
         ],
       },
     },
-    // plugins: {
-    //   add: [
-    //     new webpack.DefinePlugin({
-    //       process: {env: {}}
-    //     })
-    //   ]
-    // }
+    plugins: {
+      add: [
+        new webpack.ProvidePlugin({
+          process: "process/browser",
+        }),
+      ],
+    },
   },
 };

@@ -27,7 +27,6 @@ const pageVariants = {
 
 function ToDoDetail({ item }: IToDoDetail) {
   const navigate = useNavigate();
-  console.log(item);
 
   return (
     <Container
@@ -45,6 +44,9 @@ function ToDoDetail({ item }: IToDoDetail) {
       <div className="todo_content">{item.text}</div>
       <div className="todo_btns">
         <button>진행중</button>
+        <button>완료</button>
+        <button>수정</button>
+        <button>삭제</button>
         <button>완료</button>
       </div>
     </Container>

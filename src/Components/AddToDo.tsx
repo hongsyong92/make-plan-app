@@ -94,6 +94,20 @@ const Container = styled(motion.div)<{ addOpen: boolean }>`
   background-color: ${theme.modalColor};
   z-index: 2;
   form {
+    padding-top: 30px;
+    display: flex;
+    > input {
+      width: calc(100% - 110px);
+      height: 47px;
+      margin: 0 auto;
+      border: 0;
+      outline: 0;
+      background-color: transparent;
+      border-bottom: 1px solid ${theme.textColor};
+      color: ${theme.textColor};
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
     .add_todo_btn {
       display: flex;
       justify-content: center;
