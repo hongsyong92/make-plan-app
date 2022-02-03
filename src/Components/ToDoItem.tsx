@@ -6,8 +6,20 @@ import { IToDo } from "../atoms";
 import { motion } from "framer-motion";
 import dayjs from "dayjs";
 
+const handleStatusColor = (ctg: any) => {
+  switch (ctg) {
+    case "TO_DO":
+      return "background-color: #e63946";
+    case "DOING":
+      return "background-color: #fee440";
+    case "DONE":
+      return "background-color: #00bbf9";
+  }
+};
+
 function ToDoItem({ text, category, onClick, id }: IToDo) {
   const date = dayjs(id);
+
   return (
     <Container onClick={onClick}>
       <StatusLine category={category} />
@@ -52,8 +64,7 @@ const StatusLine = styled.div<{ category: string }>`
   width: 5px;
   height: 100%;
   border-radius: 6px;
-  background-color: ${(props) =>
-    props.category === "TO_DO" ? "#e63946" : "DOING" ? "#fee440" : "#00bbf9"};
+  ${({ category }) => handleStatusColor(category)};
 `;
 
 const ToDoContents = styled.div`

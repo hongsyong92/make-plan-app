@@ -4,6 +4,9 @@ import { RiCloseFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import dayjs from "dayjs";
+import { IToDo, toDoState } from "../atoms";
+import React from "react";
+import { useSetRecoilState } from "recoil";
 
 interface IToDoDetail {
   item: any;
@@ -29,6 +32,20 @@ const pageVariants = {
 function ToDoDetail({ item }: IToDoDetail) {
   const navigate = useNavigate();
   const date = dayjs(item.id);
+  const setToDos = useSetRecoilState(toDoState);
+  const onChangeCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const { name } = event.currentTarget;
+    setToDos((oldToDos) => {
+      const targetIndex = oldToDos.findIndex((toDo) => toDo.id === item.id);
+      const oldToDo = oldToDos[targetIndex];
+      const newToDo = { text: item.text, id: item.id, category: name as any };
+      return [
+        ...oldToDos.slice(0, targetIndex),
+        newToDo,
+        ...oldToDos.slice(targetIndex + 1),
+      ];
+    });
+  };
 
   return (
     <Container
@@ -48,8 +65,21 @@ function ToDoDetail({ item }: IToDoDetail) {
           {date.format("MM.DD HH:mm")}에 생성된 할일
         </div>
         <div className="todo_btns">
-          <ToDoBtn>진행중</ToDoBtn>
-          <ToDoBtn>완료</ToDoBtn>
+          {item.category !== "TO_DO" && (
+            <ToDoBtn name="TO_DO" onClick={onChangeCategory}>
+              할 일
+            </ToDoBtn>
+          )}
+          {item.category !== "DOING" && (
+            <ToDoBtn name="DOING" onClick={onChangeCategory}>
+              진행중
+            </ToDoBtn>
+          )}
+          {item.category !== "DONE" && (
+            <ToDoBtn name="DONE" onClick={onChangeCategory}>
+              완료
+            </ToDoBtn>
+          )}
           <ToDoBtn>수정</ToDoBtn>
           <ToDoBtn>삭제</ToDoBtn>
         </div>

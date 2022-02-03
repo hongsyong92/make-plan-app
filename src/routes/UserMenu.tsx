@@ -39,6 +39,9 @@ function UserMenu() {
           <p>user 님의 메뉴</p>
           <button onClick={handleLogout}>로그아웃</button>
         </TextHeader>
+        <MenuBox>
+          <div className="profile_img">asdf</div>
+        </MenuBox>
       </Container>
     </AnimatePresence>
   );
@@ -69,3 +72,5 @@ const TextHeader = styled.div`
     margin-right: 10px;
   }
 `;
+
+const MenuBox = styled.div``;

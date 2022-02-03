@@ -36,7 +36,6 @@ const pageVariants = {
 };
 
 function AddToDo({ addOpen, onClose }: IAddToDoModal) {
-  const timeFomatter = dayjs();
   const setToDos = useSetRecoilState(toDoState);
   const { register, handleSubmit, setValue } = useForm<IForm>();
 
