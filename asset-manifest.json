@@ -1,24 +1,22 @@
 {
   "files": {
-    "main.css": "/present-progress-app/static/css/main.f0e48b05.chunk.css",
-    "main.js": "/present-progress-app/static/js/main.a8aaeb51.chunk.js",
-    "main.js.map": "/present-progress-app/static/js/main.a8aaeb51.chunk.js.map",
-    "runtime-main.js": "/present-progress-app/static/js/runtime-main.fb9b0d69.js",
-    "runtime-main.js.map": "/present-progress-app/static/js/runtime-main.fb9b0d69.js.map",
-    "static/css/2.6c0f60ba.chunk.css": "/present-progress-app/static/css/2.6c0f60ba.chunk.css",
-    "static/js/2.e0ffcf46.chunk.js": "/present-progress-app/static/js/2.e0ffcf46.chunk.js",
-    "static/js/2.e0ffcf46.chunk.js.map": "/present-progress-app/static/js/2.e0ffcf46.chunk.js.map",
+    "main.css": "/present-progress-app/static/css/main.e24b2f67.css",
+    "main.js": "/present-progress-app/static/js/main.d2e747b6.js",
+    "static/media/Pretendard-Black.woff2": "/present-progress-app/static/media/Pretendard-Black.aaa76c4a6ca9efc94d1a.woff2",
+    "static/media/Pretendard-ExtraBold.woff2": "/present-progress-app/static/media/Pretendard-ExtraBold.36145a15bedb632d6795.woff2",
+    "static/media/Pretendard-Bold.woff2": "/present-progress-app/static/media/Pretendard-Bold.6b164eb09ac66559881e.woff2",
+    "static/media/Pretendard-SemiBold.woff2": "/present-progress-app/static/media/Pretendard-SemiBold.77dc78f65aa11d9abc37.woff2",
+    "static/media/Pretendard-Medium.woff2": "/present-progress-app/static/media/Pretendard-Medium.59b075f096b9d3f4d25e.woff2",
+    "static/media/Pretendard-Regular.woff2": "/present-progress-app/static/media/Pretendard-Regular.0c7ef87f67b575118ed9.woff2",
+    "static/media/Pretendard-Light.woff2": "/present-progress-app/static/media/Pretendard-Light.f63725c2aff140ea2706.woff2",
+    "static/media/Pretendard-ExtraLight.woff2": "/present-progress-app/static/media/Pretendard-ExtraLight.e2816fb65d32738bf731.woff2",
+    "static/media/Pretendard-Thin.woff2": "/present-progress-app/static/media/Pretendard-Thin.04f04b1778555863e68f.woff2",
     "index.html": "/present-progress-app/index.html",
-    "static/css/2.6c0f60ba.chunk.css.map": "/present-progress-app/static/css/2.6c0f60ba.chunk.css.map",
-    "static/css/main.f0e48b05.chunk.css.map": "/present-progress-app/static/css/main.f0e48b05.chunk.css.map",
-    "static/js/2.e0ffcf46.chunk.js.LICENSE.txt": "/present-progress-app/static/js/2.e0ffcf46.chunk.js.LICENSE.txt",
-    "static/media/pretendard.css": "/present-progress-app/static/media/Pretendard-Thin.04f04b17.woff2"
+    "main.e24b2f67.css.map": "/present-progress-app/static/css/main.e24b2f67.css.map",
+    "main.d2e747b6.js.map": "/present-progress-app/static/js/main.d2e747b6.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.fb9b0d69.js",
-    "static/css/2.6c0f60ba.chunk.css",
-    "static/js/2.e0ffcf46.chunk.js",
-    "static/css/main.f0e48b05.chunk.css",
-    "static/js/main.a8aaeb51.chunk.js"
+    "static/css/main.e24b2f67.css",
+    "static/js/main.d2e747b6.js"
   ]
 }
