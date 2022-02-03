@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { toDoState } from "../atoms";
 import { useSetRecoilState } from "recoil";
 import { motion } from "framer-motion";
+import dayjs from "dayjs";
 
 interface IAddToDoModal {
   addOpen: boolean;
@@ -35,7 +36,7 @@ const pageVariants = {
 };
 
 function AddToDo({ addOpen, onClose }: IAddToDoModal) {
-  // const navigate = useNavigate();
+  const timeFomatter = dayjs();
   const setToDos = useSetRecoilState(toDoState);
   const { register, handleSubmit, setValue } = useForm<IForm>();
 

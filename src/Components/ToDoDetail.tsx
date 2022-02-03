@@ -3,6 +3,7 @@ import { theme } from "../theme";
 import { RiCloseFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import dayjs from "dayjs";
 
 interface IToDoDetail {
   item: any;
@@ -27,6 +28,7 @@ const pageVariants = {
 
 function ToDoDetail({ item }: IToDoDetail) {
   const navigate = useNavigate();
+  const date = dayjs(item.id);
 
   return (
     <Container
@@ -40,14 +42,17 @@ function ToDoDetail({ item }: IToDoDetail) {
           <RiCloseFill size="24" />
         </button>
       </DetailHeader>
-      <div className="created">{item.id}</div>
-      <div className="todo_content">{item.text}</div>
-      <div className="todo_btns">
-        <button>진행중</button>
-        <button>완료</button>
-        <button>수정</button>
-        <button>삭제</button>
-        <button>완료</button>
+      <div className="todo_content">
+        <p className="todo_text">{item.text}</p>
+        <div className="created">
+          {date.format("MM.DD HH:mm")}에 생성된 할일
+        </div>
+        <div className="todo_btns">
+          <ToDoBtn>진행중</ToDoBtn>
+          <ToDoBtn>완료</ToDoBtn>
+          <ToDoBtn>수정</ToDoBtn>
+          <ToDoBtn>삭제</ToDoBtn>
+        </div>
       </div>
     </Container>
   );
@@ -58,17 +63,46 @@ export default ToDoDetail;
 const Container = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  position: absolute;
-  width: 100%;
-  height: 70%;
+  position: fixed;
+  width: 90%;
+  height: 50vh;
   background-color: ${theme.modalColor};
   border-radius: 20px;
   overflow-x: hidden;
   padding: 30px 20px;
   z-index: 2;
+  .todo_content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .todo_text {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .created {
+      color: ${theme.subTextColor};
+      margin-bottom: 15px;
+    }
+    .todo_btns {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 `;
 
 const DetailHeader = styled.div`
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 15px;
+`;
+
+const ToDoBtn = styled.button`
+  width: 22%;
+  height: 40px;
+  border-radius: 14px;
+  border: 1px solid ${theme.borderColor};
 `;

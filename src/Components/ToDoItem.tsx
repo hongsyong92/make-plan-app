@@ -4,13 +4,16 @@ import { AiOutlineMore } from "react-icons/ai";
 import React from "react";
 import { IToDo } from "../atoms";
 import { motion } from "framer-motion";
+import dayjs from "dayjs";
 
-function ToDoItem({ text, category, onClick }: IToDo) {
+function ToDoItem({ text, category, onClick, id }: IToDo) {
+  const date = dayjs(id);
   return (
     <Container onClick={onClick}>
       <StatusLine category={category} />
       <ToDoContents>
-        <p>{text}</p>
+        <p className="todo_text">{text}</p>
+        <span className="created_at">{date.format("MM.DD HH:mm")}</span>
       </ToDoContents>
       <MoreBtn
         className="more_btn"
@@ -35,7 +38,7 @@ const Container = styled(motion.div)`
   border-radius: 24px;
   background-color: ${theme.baseColor};
   margin-bottom: 15px;
-  padding: 15px 0 15px 20px;
+  padding: 25px 0 25px 20px;
   &:last-child {
     margin-bottom: 0;
   }
@@ -46,15 +49,27 @@ const Container = styled(motion.div)`
 `;
 
 const StatusLine = styled.div<{ category: string }>`
-  width: 3px;
-  height: calc(100% - 15px);
+  width: 5px;
+  height: 100%;
+  border-radius: 6px;
   background-color: ${(props) =>
-    props.category === "TO_DO" ? "blue" : "DOING" ? "gold" : "green"};
+    props.category === "TO_DO" ? "#e63946" : "DOING" ? "#fee440" : "#00bbf9"};
 `;
 
 const ToDoContents = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
-  padding-left: 15px;
+  height: 100%;
+  padding: 3px 0 3px 15px;
+  .todo_text {
+    color: ${theme.textColor};
+  }
+  .created_at {
+    font-size: 13px;
+    color: ${theme.subTextColor};
+  }
 `;
 
 const MoreBtn = styled.button`

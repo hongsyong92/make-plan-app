@@ -24,4 +24,15 @@ const Container = styled.div`
   border-radius: 20px;
   overflow: hidden;
   background-color: ${theme.bgColor};
+  @media all and (max-width: 500px) {
+    max-width: unset;
+    max-height: unset;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    /* iOS only */
+    @supports (-webkit-touch-callout: none) {
+      height: -webkit-fill-available;
+    }
+  }
 `;

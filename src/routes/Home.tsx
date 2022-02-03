@@ -104,8 +104,8 @@ const Container = styled(motion.div)`
   height: calc(100% - 55px);
   background-color: ${theme.bgColor};
   padding-top: 30px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  @media all and (max-width: 500px) {
+  }
 `;
 
 const TextHeader = styled.div`
@@ -130,6 +130,8 @@ const ListBoard = styled.div`
   height: 100%;
   padding: 0 20px;
   background-color: ${(props) => props.theme.bgColor};
+  overflow-x: hidden;
+  overflow-y: auto;
 `;
 
 const List = styled.div`
