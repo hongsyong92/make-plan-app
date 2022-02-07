@@ -48,7 +48,7 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   height: calc(100% - 55px);
-  background-color: ${theme.bgColor};
+  background-color: ${theme.bgColor01};
   padding-top: 30px;
 `;
 

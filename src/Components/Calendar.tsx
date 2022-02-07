@@ -168,7 +168,7 @@ const Container = styled.div`
       position: static;
       width: 32px;
       height: 32px;
-      color: ${theme.textColor};
+      color: ${theme.textColor01};
     }
     .holiday,
     .grayed {
@@ -205,7 +205,7 @@ const Container = styled.div`
     }
     .isToday {
       position: relative;
-      color: ${theme.textColor};
+      color: ${theme.textColor01};
       font-size: 10px;
       font-weight: 400;
     }

@@ -9,11 +9,11 @@ import dayjs from "dayjs";
 const handleStatusColor = (ctg: any) => {
   switch (ctg) {
     case "TO_DO":
-      return "background-color: #e63946";
+      return `background-color: ${theme.toDoStatusColor}`;
     case "DOING":
-      return "background-color: #fee440";
+      return `background-color: ${theme.doingStatusColor}`;
     case "DONE":
-      return "background-color: #00bbf9";
+      return `background-color: ${theme.doneStatusColor}`;
   }
 };
 
@@ -24,7 +24,9 @@ function ToDoItem({ text, category, onClick, id }: IToDo) {
     <Container onClick={onClick}>
       <StatusLine category={category} />
       <ToDoContents>
-        <p className="todo_text">{text}</p>
+        <p className={category === "DONE" ? "todo_text done" : "todo_text"}>
+          {text}
+        </p>
         <span className="created_at">{date.format("MM.DD HH:mm")}</span>
       </ToDoContents>
       <MoreBtn
@@ -75,11 +77,15 @@ const ToDoContents = styled.div`
   height: 100%;
   padding: 3px 0 3px 15px;
   .todo_text {
-    color: ${theme.textColor};
+    color: ${theme.textColor01};
+  }
+  .todo_text.done {
+    color: ${theme.textColor04};
+    text-decoration: line-through;
   }
   .created_at {
     font-size: 13px;
-    color: ${theme.subTextColor};
+    color: ${theme.textColor03};
   }
 `;
 

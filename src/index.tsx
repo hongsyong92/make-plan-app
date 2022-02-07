@@ -48,7 +48,7 @@ body {
   line-height: 1;
   font-family: 'Pretendard', sans-serif;
   background-color: ${(props) => props.theme.modalColor};
-  color: ${(props) => props.theme.textColor};
+  color: ${(props) => props.theme.textColor01};
   overflow: hidden;
 }
 menu, ol, ul {

@@ -102,7 +102,7 @@ const Container = styled(motion.div)`
   align-items: center;
   width: 100%;
   height: calc(100% - 55px);
-  background-color: ${theme.bgColor};
+  background-color: ${theme.bgColor01};
   padding-top: 30px;
   @media all and (max-width: 500px) {
   }
@@ -129,7 +129,7 @@ const ListBoard = styled.div`
   width: 100%;
   height: 100%;
   padding: 0 20px;
-  background-color: ${(props) => props.theme.bgColor};
+  background-color: ${(props) => props.theme.bgColor01};
   overflow-x: hidden;
   overflow-y: auto;
 `;

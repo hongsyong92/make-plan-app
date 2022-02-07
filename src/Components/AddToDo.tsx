@@ -8,6 +8,7 @@ import { toDoState } from "../atoms";
 import { useSetRecoilState } from "recoil";
 import { motion } from "framer-motion";
 import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
 
 interface IAddToDoModal {
   addOpen: boolean;
@@ -36,6 +37,7 @@ const pageVariants = {
 };
 
 function AddToDo({ addOpen, onClose }: IAddToDoModal) {
+  const navigate = useNavigate();
   const setToDos = useSetRecoilState(toDoState);
   const { register, handleSubmit, setValue } = useForm<IForm>();
 
@@ -45,6 +47,7 @@ function AddToDo({ addOpen, onClose }: IAddToDoModal) {
       ...oldToDos,
     ]);
     setValue("toDo", "");
+    navigate("/");
     onClose();
   };
 
@@ -94,25 +97,32 @@ const Container = styled(motion.div)<{ addOpen: boolean }>`
   background-color: ${theme.modalColor};
   z-index: 2;
   form {
-    padding-top: 30px;
+    position: relative;
     display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 30px 30px 0 30px;
     > input {
-      width: calc(100% - 110px);
+      width: 100%;
       height: 47px;
       margin: 0 auto;
       border: 0;
       outline: 0;
       background-color: transparent;
-      border-bottom: 1px solid ${theme.textColor};
-      color: ${theme.textColor};
+      border-bottom: 1px solid ${theme.textColor01};
+      color: ${theme.textColor01};
       font-size: 18px;
       margin-bottom: 20px;
     }
     .add_todo_btn {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 100px;
+      width: calc(100% - 30px);
       height: 47px;
       border-radius: 8px;
       background-color: #577af8;

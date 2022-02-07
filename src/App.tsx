@@ -23,7 +23,7 @@ const Container = styled.div`
   margin: 0 auto;
   border-radius: 20px;
   overflow: hidden;
-  background-color: ${theme.bgColor};
+  background-color: ${theme.bgColor01};
   @media all and (max-width: 500px) {
     max-width: unset;
     max-height: unset;
